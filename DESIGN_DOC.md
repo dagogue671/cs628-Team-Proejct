@@ -23,6 +23,9 @@ provide a consistent development and deployment environment.
 ## Success Criteria
 
 -   Responsive React frontend
+-   Landing page with sign-in and sign-up entry points
+-   Client-side sign-in and sign-up form validation
+-   React Router navigation between public pages
 -   RESTful backend API
 -   MongoDB persistence
 -   Dockerized application
@@ -306,6 +309,9 @@ POST /posts/:id/like
 
 # 10. React Pages
 
+-   Landing page (`/`)
+-   Sign-in (`/sign-in`)
+-   Sign-up (`/sign-up`)
 -   Home
 -   Profile
 -   Friends
@@ -316,6 +322,9 @@ POST /posts/:id/like
 
 # 11. React Components
 
+-   LandingPage
+-   SigninForm
+-   SignupForm
 -   Navbar
 -   Sidebar
 -   Profile Card
@@ -334,6 +343,7 @@ POST /posts/:id/like
 -   Network issues
 -   Missing resources
 -   Friendly error messages
+-   Sign-in and sign-up forms display submission errors and loading states
 
 ------------------------------------------------------------------------
 
@@ -344,6 +354,10 @@ POST /posts/:id/like
 -   Environment variables
 -   CORS
 -   JWT authentication (future enhancement)
+
+The current sign-in and sign-up forms are frontend-only. Their optional
+`onSubmit` callbacks are placeholders for future API integration; no
+credentials are sent to the backend yet.
 
 ------------------------------------------------------------------------
 
@@ -382,7 +396,8 @@ Member 3
 Frontend
 
 -   Component testing
--   Routing
+-   Routing for `/`, `/sign-in`, and `/sign-up`
+-   Sign-in and sign-up form validation
 -   API integration
 
 Backend

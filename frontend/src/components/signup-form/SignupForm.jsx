@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './SignupForm.module.css';
 
 export default function SignupForm({ onSubmit }) {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -44,6 +46,9 @@ export default function SignupForm({ onSubmit }) {
   return (
     <section className={styles.container} aria-labelledby="signup-title">
       <div className={styles.card}>
+        <button className={styles.backButton} type="button" onClick={() => navigate('/')}>
+          <span aria-hidden="true">&lt;-</span> Back to home
+        </button>
         <p className={styles.eyebrow}>CS628 Social Media</p>
         <h1 id="signup-title" className={styles.title}>Create your account</h1>
         <p className={styles.subtitle}>Join the conversation and stay connected.</p>

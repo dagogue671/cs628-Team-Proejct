@@ -11,6 +11,24 @@
   box-shadow: 0 18px 45px rgba(35, 49, 66, 0.12);
 }
 
+.backButton {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0 0 28px;
+  padding: 0;
+  border: 0;
+  color: #5e6b78;
+  background: transparent;
+  font: inherit;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.backButton:hover {
+  color: #26736d;
+}
+
 .eyebrow {
   margin: 0 0 12px;
   color: #26736d;
