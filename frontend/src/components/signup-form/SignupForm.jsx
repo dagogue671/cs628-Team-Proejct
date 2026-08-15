@@ -64,7 +64,7 @@ export default function SignupForm({ onSubmit }) {
               autoComplete="name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Alex Morgan"
+              placeholder="John Doe"
               required
             />
           </div>
@@ -78,7 +78,7 @@ export default function SignupForm({ onSubmit }) {
               autoComplete="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="alex@example.com"
+              placeholder="johndoe@example.com"
               required
             />
           </div>
