@@ -23,6 +23,9 @@ provide a consistent development and deployment environment.
 ## Success Criteria
 
 -   Responsive React frontend
+-   Landing page with sign-in and sign-up entry points
+-   Client-side sign-in and sign-up form validation
+-   React Router navigation between public pages
 -   RESTful backend API
 -   MongoDB persistence
 -   Dockerized application
@@ -163,7 +166,7 @@ Persistent Volumes:
 
   Service   Port
   --------- -------
-  React     3000
+    Frontend  8080
   Express   5000
   MongoDB   27017
 
@@ -199,13 +202,44 @@ Frontend
 
 ## Development Workflow
 
-    docker compose up --build
+Before starting the full stack, run the application checks locally:
 
-Supports:
+    cd frontend
+    npm install
+    npm run build
+    cd ..
+    node --check backend/src/server.js
 
--   Hot Reloading
--   Shared Volumes
--   Consistent Development Environment
+Then build and start the Docker services from the repository root:
+
+    docker compose up --build -d
+
+The production frontend is built inside the frontend image and served by
+Nginx on port 8080. The backend is available on port 5000.
+
+### Refreshing stale images
+
+Docker can retain an older frontend image after source changes. Recreate
+the project images when the browser does not show the latest code:
+
+    docker compose down
+    docker compose down --rmi local
+    docker compose build --no-cache
+    docker compose up -d --force-recreate
+
+Check the running services with:
+
+    docker compose ps
+
+The `--rmi local` option removes images created by this compose project.
+The `--no-cache` option forces all Dockerfile steps to run again. Do not
+use `docker compose down --volumes` unless the local MongoDB data should
+also be deleted. Avoid `docker system prune -a` unless unused resources
+from all Docker projects have been reviewed.
+
+This workflow supports consistent, repeatable Docker builds. Live
+reloading is not configured for the current production-style frontend
+container.
 
 ------------------------------------------------------------------------
 
@@ -275,6 +309,9 @@ POST /posts/:id/like
 
 # 10. React Pages
 
+-   Landing page (`/`)
+-   Sign-in (`/sign-in`)
+-   Sign-up (`/sign-up`)
 -   Home
 -   Profile
 -   Friends
@@ -285,6 +322,9 @@ POST /posts/:id/like
 
 # 11. React Components
 
+-   LandingPage
+-   SigninForm
+-   SignupForm
 -   Navbar
 -   Sidebar
 -   Profile Card
@@ -303,6 +343,7 @@ POST /posts/:id/like
 -   Network issues
 -   Missing resources
 -   Friendly error messages
+-   Sign-in and sign-up forms display submission errors and loading states
 
 ------------------------------------------------------------------------
 
@@ -313,6 +354,10 @@ POST /posts/:id/like
 -   Environment variables
 -   CORS
 -   JWT authentication (future enhancement)
+
+The current sign-in and sign-up forms are frontend-only. Their optional
+`onSubmit` callbacks are placeholders for future API integration; no
+credentials are sent to the backend yet.
 
 ------------------------------------------------------------------------
 
@@ -351,7 +396,8 @@ Member 3
 Frontend
 
 -   Component testing
--   Routing
+-   Routing for `/`, `/sign-in`, and `/sign-up`
+-   Sign-in and sign-up form validation
 -   API integration
 
 Backend
