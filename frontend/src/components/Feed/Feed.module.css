@@ -1,0 +1,196 @@
+.feed {
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-surface);
+}
+
+.feedHeader {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+  backdrop-filter: blur(8px);
+}
+
+.feedHeader h1 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.15rem;
+}
+
+.composer {
+  display: flex;
+  gap: 14px;
+  padding: 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.avatar {
+  display: grid;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border-radius: 50%;
+  color: #233b46;
+  background: var(--color-accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.composerContent {
+  min-width: 0;
+  flex: 1;
+}
+
+.composerContent textarea {
+  width: 100%;
+  min-height: 90px;
+  resize: vertical;
+  padding: 8px 0;
+  border: 0;
+  outline: none;
+  color: var(--color-text);
+  background: transparent;
+  font: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.composerContent textarea::placeholder {
+  color: var(--color-muted);
+}
+
+.composerFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border-light);
+}
+
+.composerFooter span {
+  color: var(--color-muted);
+  font-size: 0.75rem;
+}
+
+.composerFooter button {
+  padding: 9px 18px;
+  border: 0;
+  border-radius: var(--radius-large);
+  color: #ffffff;
+  background: var(--color-primary);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    transform 160ms ease,
+    opacity 160ms ease;
+}
+
+.composerFooter button:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.composerFooter button:disabled {
+  opacity: 0.45;
+}
+
+.post {
+  display: flex;
+  gap: 14px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+  transition: background 160ms ease;
+}
+
+.post:hover {
+  background: #fafcfc;
+}
+
+.postContent {
+  min-width: 0;
+  flex: 1;
+}
+
+.postHeader {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.postHeader strong {
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.postHeader span {
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.postText {
+  margin: 7px 0 14px;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  max-width: 380px;
+}
+
+.actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: var(--radius-large);
+  color: var(--color-muted);
+  background: transparent;
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.actions button:hover {
+  color: var(--color-primary);
+  background: #edf5f3;
+}
+
+.actions .liked {
+  color: #b94c64;
+}
+
+.actions .liked:hover {
+  color: #9d3f55;
+  background: #f9edf0;
+}
+
+@media (max-width: 700px) {
+  .feedHeader,
+  .composer,
+  .post {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .actions {
+    max-width: 100%;
+  }
+}

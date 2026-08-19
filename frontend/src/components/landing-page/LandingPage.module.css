@@ -1,7 +1,8 @@
 .page {
   box-sizing: border-box;
-  width: min(100%, 1240px);
+  width: min(100%, var(--content-width));
   min-height: 100vh;
+  margin: 0 auto;
   padding: 32px 56px 24px;
   display: flex;
   flex-direction: column;
@@ -21,7 +22,7 @@
 }
 
 .logo {
-  color: #17212b;
+  color: var(--color-text);
   font-size: 1.15rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -29,32 +30,37 @@
 }
 
 .navButton {
-  text-decoration: none;
   padding: 9px 16px;
-  border: 1px solid #26736d;
-  border-radius: 6px;
-  color: #26736d;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-small);
+  color: var(--color-primary);
   background: transparent;
   font: inherit;
   font-size: 0.9rem;
   font-weight: 700;
+  text-decoration: none;
   cursor: pointer;
+  transition:
+    color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
 }
 
 .signinLink {
-  color: #26736d;
+  color: var(--color-primary);
   font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
+  transition: color 160ms ease;
 }
 
 .signinLink:hover {
-  color: #1e5f5a;
+  color: var(--color-primary-hover);
 }
 
 .navButton:hover {
   color: #ffffff;
-  background: #26736d;
+  background: var(--color-primary);
 }
 
 .hero {
@@ -72,7 +78,7 @@
 
 .eyebrow {
   margin: 0 0 18px;
-  color: #26736d;
+  color: var(--color-primary);
   font-size: 0.78rem;
   font-weight: 800;
   letter-spacing: 0.13em;
@@ -82,7 +88,7 @@
 .hero h1 {
   max-width: 650px;
   margin: 0;
-  color: #17212b;
+  color: var(--color-text);
   font-size: clamp(2.5rem, 6vw, 5.2rem);
   line-height: 0.98;
   letter-spacing: -0.03em;
@@ -91,7 +97,7 @@
 .description {
   max-width: 500px;
   margin: 28px 0 32px;
-  color: #5e6b78;
+  color: var(--color-text-secondary);
   font-size: 1.05rem;
   line-height: 1.65;
 }
@@ -100,20 +106,22 @@
   display: inline-flex;
   align-items: center;
   gap: 24px;
-  text-decoration: none;
   padding: 15px 19px;
   border: 0;
-  border-radius: 6px;
+  border-radius: var(--radius-small);
   color: #ffffff;
-  background: #26736d;
+  background: var(--color-primary);
   font: inherit;
   font-weight: 800;
+  text-decoration: none;
   cursor: pointer;
-  transition: background 160ms ease, transform 160ms ease;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
 }
 
 .primaryButton:hover {
-  background: #1e5f5a;
+  background: var(--color-primary-hover);
   transform: translateY(-2px);
 }
 
@@ -126,7 +134,7 @@
   position: relative;
   overflow: hidden;
   padding: 26px;
-  border-radius: 10px;
+  border-radius: var(--radius-medium);
   color: #ffffff;
   background: #233b46;
   box-shadow: 16px 20px 0 #c7ded9;
@@ -158,12 +166,12 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #e8b35d;
+  background: var(--color-accent);
 }
 
 .signal {
   margin-left: auto;
-  color: #e8b35d;
+  color: var(--color-accent);
   font-size: 0.65rem;
 }
 
@@ -186,7 +194,7 @@
   place-items: center;
   border-radius: 50%;
   color: #233b46;
-  background: #e8b35d;
+  background: var(--color-accent);
   font-size: 0.75rem;
   font-weight: 800;
 }
@@ -212,7 +220,7 @@
 }
 
 .postAccent span:first-child {
-  color: #e8b35d;
+  color: var(--color-accent);
   font-size: 2.8rem;
   font-weight: 800;
 }
@@ -226,8 +234,8 @@
 
 .footer {
   padding-top: 20px;
-  border-top: 1px solid #d5dfdd;
-  color: #71808b;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
   font-size: 0.76rem;
 }
 
