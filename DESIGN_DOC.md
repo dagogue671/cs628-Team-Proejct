@@ -109,7 +109,8 @@ provide a consistent development and deployment environment.
 
 # 6. System Architecture
 
-![Social Networking Application – System Architecture](https://drive.google.com/file/d/1QjJJA8vRJCaIYrM3u_Yb3sPbxFrrZWuF/view?usp=sharing)
+<img width="661" height="685" alt="Screenshot 2026-08-24 125358" src="https://github.com/user-attachments/assets/1888b276-4478-47a2-afd1-45c0512f1ba6" />
+
 
 The system follows a layered architecture with the following components:
 
