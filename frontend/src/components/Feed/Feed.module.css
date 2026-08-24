@@ -194,3 +194,36 @@
     max-width: 100%;
   }
 }
+
+.comments {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comment { display: flex; gap: 6px; font-size: 0.9rem; }
+.comment strong { color: var(--color-text); }
+.comment span { color: var(--color-text-secondary); }
+
+.commentForm { display: flex; gap: 8px; margin-top: 4px; }
+
+.commentForm input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-surface);
+}
+
+.commentForm button {
+  padding: 6px 14px;
+  border: none;
+  border-radius: var(--radius-small);
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.commentForm button:disabled { opacity: 0.5; }
