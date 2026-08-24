@@ -109,15 +109,15 @@ provide a consistent development and deployment environment.
 
 # 6. System Architecture
 
-    Browser
-        │
-    React Frontend
-        │
-    REST API
-        │
-    Express Backend
-        │
-    MongoDB
+![Social Networking Application – System Architecture](image1)
+
+The system follows a layered architecture with the following components:
+
+- **Web Browser**: Users access the application through a web browser, which serves as the client interface.
+- **React Frontend**: Renders the user interface and handles client-side logic. Communicates with the backend via REST API.
+- **REST API**: Defines the contract for communication between frontend and backend, handling HTTP requests and responses.
+- **Express Backend**: Processes requests, applies business logic, and performs CRUD operations through the database.
+- **MongoDB**: Persists application data including users, posts, likes, and other information.
 
 Docker Compose manages communication between all services.
 
@@ -452,4 +452,5 @@ Docker
   Version   Date       Changes
   --------- ---------- ---------------------------
   1.0       Aug 2026   Initial design
-  1.1       Aug 2026   Added Docker architecture
+  1.1       Aug 2026   Added Docker architecture and system architecture diagram
+
