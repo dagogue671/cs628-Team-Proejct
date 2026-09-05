@@ -1,0 +1,193 @@
+.page {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(210px, 260px) minmax(520px, 760px);
+  justify-content: center;
+  background: var(--color-surface);
+}
+
+.leftSidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  min-height: 100vh;
+  height: 100vh;
+  padding: 28px 22px;
+  border-right: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.brand {
+  margin-bottom: 36px;
+  color: var(--color-text);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav a {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-small);
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  color: var(--color-primary);
+  background: var(--color-surface-soft);
+}
+
+.nav .active {
+  color: var(--color-primary);
+  background: var(--color-surface-soft);
+}
+
+.signOutButton {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: var(--radius-small);
+  color: var(--color-text-secondary);
+  background: transparent;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.signOutButton:hover {
+  color: var(--color-primary);
+  background: var(--color-surface-soft);
+}
+
+.mainContent {
+  min-height: 100vh;
+  background: var(--color-surface);
+}
+
+.header {
+  padding: 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header h1 {
+  margin: 0 0 6px;
+  color: var(--color-text);
+  font-size: 1.35rem;
+}
+
+.header p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.searchBar {
+  padding: 20px 24px 0;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large);
+  outline: none;
+  color: var(--color-text);
+  background: var(--color-surface-soft);
+  transition:
+    border 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.searchInput::placeholder {
+  color: var(--color-muted);
+}
+
+.searchInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(38, 115, 109, 0.12);
+}
+
+.userList {
+  padding: 20px 24px;
+}
+
+.emptyState {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+.userRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.userRow strong {
+  display: block;
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.userRow p {
+  margin: 3px 0 0;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.userRow button {
+  padding: 7px 12px;
+  border: 0;
+  border-radius: var(--radius-large);
+  color: #ffffff;
+  background: var(--color-primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition:
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.userRow button:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 720px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+
+  .leftSidebar {
+    position: static;
+    min-height: auto;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .nav a {
+    width: auto;
+    white-space: nowrap;
+  }
+}

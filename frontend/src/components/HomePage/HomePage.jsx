@@ -1,12 +1,63 @@
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { addFriend, getUsers } from '../../api/users';
 import styles from './HomePage.module.css';
 import Feed from '../Feed';
 
-export default function HomePage() {
+function getUsername(email) {
+  return email?.split('@')[0] || 'unknown';
+}
+
+export default function HomePage({ onSignOut }) {
+  const [currentUser, setCurrentUser] = useState(
+    () => JSON.parse(localStorage.getItem('authUser') ?? 'null'),
+  );
+  const [suggestedUsers, setSuggestedUsers] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    if (!currentUser) {
+      return;
+    }
+    getUsers(currentUser._id)
+      .then((data) => setSuggestedUsers(data.users))
+      .catch(() => setSuggestedUsers([]));
+  }, [currentUser]);
+
+  const handleFollow = async (friendId) => {
+    if (!currentUser) {
+      return;
+    }
+    const { user } = await addFriend(currentUser._id, friendId);
+    localStorage.setItem('authUser', JSON.stringify(user));
+    setCurrentUser(user);
+  };
+
+  const friendsToSuggest = suggestedUsers.filter(
+    (user) => !currentUser?.friends?.includes(user._id),
+  );
+
+  const trimmedQuery = searchQuery.trim().toLowerCase();
+  const searchResults = trimmedQuery
+    ? suggestedUsers
+        .filter(
+          (user) =>
+            user.name.toLowerCase().includes(trimmedQuery) ||
+            user.email.toLowerCase().includes(trimmedQuery),
+        )
+        .slice(0, 20)
+    : [];
+
   return (
     <div className={styles.page}>
       <aside className={styles.leftSidebar}>
         <div className={styles.brand}>CS628</div>
+
+        {currentUser && (
+          <div className={styles.currentUser}>
+            <strong>{currentUser.name}</strong>
+          </div>
+        )}
 
         <nav className={styles.nav}>
           <NavLink
@@ -27,6 +78,10 @@ export default function HomePage() {
           >
             Settings
           </NavLink>
+
+          <button type="button" className={styles.signOutButton} onClick={onSignOut}>
+            Sign out
+          </button>
         </nav>
       </aside>
 
@@ -42,7 +97,31 @@ export default function HomePage() {
             type="text"
             placeholder="Search CS628"
             className={styles.searchInput}
+            value={searchQuery}
+            onChange={(event) => setSearchQuery(event.target.value)}
           />
+
+          {trimmedQuery && searchResults.length === 0 && (
+            <p className={styles.emptyState}>No users found.</p>
+          )}
+
+          {searchResults.map((user) => {
+            const isFriend = currentUser?.friends?.includes(user._id);
+            return (
+              <div className={styles.followUser} key={user._id}>
+                <div>
+                  <strong>{user.name}</strong>
+                  <p>@{getUsername(user.email)}</p>
+                </div>
+
+                {!isFriend && (
+                  <button type="button" onClick={() => handleFollow(user._id)}>
+                    Follow
+                  </button>
+                )}
+              </div>
+            );
+          })}
         </section>
 
         <section className={styles.sidebarCard}>
@@ -70,23 +149,20 @@ export default function HomePage() {
         <section className={styles.sidebarCard}>
           <h2>Who to Follow</h2>
 
-          <div className={styles.followUser}>
-            <div>
-              <strong>David William Gogue</strong>
-              <p>@dwgogue</p>
+          {friendsToSuggest.length === 0 && <p className={styles.emptyState}>No suggestions right now.</p>}
+
+          {friendsToSuggest.map((user) => (
+            <div className={styles.followUser} key={user._id}>
+              <div>
+                <strong>{user.name}</strong>
+                <p>@{getUsername(user.email)}</p>
+              </div>
+
+              <button type="button" onClick={() => handleFollow(user._id)}>
+                Follow
+              </button>
             </div>
-
-            <button type="button">Follow</button>
-          </div>
-
-          <div className={styles.followUser}>
-            <div>
-              <strong>Lanxi Luo</strong>
-              <p>@lanxi</p>
-            </div>
-
-            <button type="button">Follow</button>
-          </div>
+          ))}
         </section>
       </aside>
     </div>

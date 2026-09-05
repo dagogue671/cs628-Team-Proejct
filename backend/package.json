@@ -3,6 +3,11 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "scripts": { "dev": "node --watch src/server.js", "start": "node src/server.js" },
-  "dependencies": { "bcryptjs": "latest", "cors": "latest", "dotenv": "latest", "express": "latest", "mongoose": "latest" }
+  "scripts": { 
+    "dev": "node --watch src/server.js", 
+    "start": "node src/server.js",
+    "import:mock-users": "node src/scripts/importMockUsers.js" },
+  "dependencies": { 
+    "bcryptjs": "latest", 
+    "cors": "latest", "dotenv": "latest", "express": "latest", "mongoose": "latest" }
 }

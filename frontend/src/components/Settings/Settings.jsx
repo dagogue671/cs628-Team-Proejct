@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Settings.module.css';
 
-export default function Settings() {
+export default function Settings({ onSignOut }) {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('theme') || 'light';
   });
@@ -30,6 +30,10 @@ export default function Settings() {
           >
             Settings
           </NavLink>
+
+          <button type="button" className={styles.signOutButton} onClick={onSignOut}>
+            Sign out
+          </button>
         </nav>
       </aside>
 

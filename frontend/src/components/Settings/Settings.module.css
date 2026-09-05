@@ -52,6 +52,25 @@
   background: var(--color-surface-soft);
 }
 
+.signOutButton {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: var(--radius-small);
+  color: var(--color-text-secondary);
+  background: transparent;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+}
+
+.signOutButton:hover {
+  color: var(--color-primary);
+  background: var(--color-surface-soft);
+}
+
 .mainContent {
   min-height: 100vh;
   background: var(--color-surface);

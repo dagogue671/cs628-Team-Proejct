@@ -20,6 +20,14 @@
   font-size: 1.15rem;
 }
 
+.error {
+  margin: 0;
+  padding: 12px 20px;
+  color: #b3261e;
+  background: rgba(179, 38, 30, 0.08);
+  font-size: 0.85rem;
+}
+
 .composer {
   display: flex;
   gap: 14px;
