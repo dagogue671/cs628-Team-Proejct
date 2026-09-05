@@ -4,6 +4,8 @@ import LandingPage from './components/landing-page';
 import SigninForm from './components/signin-form';
 import SignupForm from './components/signup-form';
 import HomePage from './components/HomePage';
+import Friends from './components/Friends';
+import Search from './components/Search';
 import Settings from './components/Settings';
 
 function AppRoutes() {
@@ -21,13 +23,20 @@ function AppRoutes() {
     navigate('/home');
   };
 
+  const handleSignOut = () => {
+    localStorage.removeItem('authUser');
+    navigate('/');
+  };
+
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/sign-in" element={<SigninForm onSubmit={handleSignIn} />} />
       <Route path="/sign-up" element={<SignupForm onSubmit={handleSignUp} />} />
-      <Route path="/home" element={<HomePage />} />
-      <Route path="/settings" element={<Settings />} />
+      <Route path="/home" element={<HomePage onSignOut={handleSignOut} />} />
+      <Route path="/search" element={<Search onSignOut={handleSignOut} />} />
+      <Route path="/friends" element={<Friends onSignOut={handleSignOut} />} />
+      <Route path="/settings" element={<Settings onSignOut={handleSignOut} />} />
     </Routes>
   );
 }

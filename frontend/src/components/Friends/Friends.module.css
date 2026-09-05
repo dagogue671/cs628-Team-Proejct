@@ -1,0 +1,175 @@
+.page {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(210px, 260px) minmax(520px, 760px);
+  justify-content: center;
+  background: var(--color-surface);
+}
+
+.leftSidebar {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  min-height: 100vh;
+  height: 100vh;
+  padding: 28px 22px;
+  border-right: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.brand {
+  margin-bottom: 36px;
+  color: var(--color-text);
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav a {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-small);
+  color: var(--color-text-secondary);
+  background: transparent;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: left;
+  text-decoration: none;
+  transition:
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.nav a:hover {
+  color: var(--color-primary);
+  background: var(--color-surface-soft);
+}
+
+.nav .active {
+  color: var(--color-primary);
+  background: var(--color-surface-soft);
+}
+
+.signOutButton {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: var(--radius-small);
+  color: var(--color-text-secondary);
+  background: transparent;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.signOutButton:hover {
+  color: var(--color-primary);
+  background: var(--color-surface-soft);
+}
+
+.mainContent {
+  min-height: 100vh;
+  background: var(--color-surface);
+}
+
+.header {
+  padding: 24px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header h1 {
+  margin: 0 0 6px;
+  color: var(--color-text);
+  font-size: 1.35rem;
+}
+
+.header p {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.friendList {
+  padding: 20px 24px;
+}
+
+.emptyState {
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+.friendRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.friendRow strong {
+  display: block;
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.friendRow p {
+  margin: 3px 0 0;
+  color: var(--color-muted);
+  font-size: 0.8rem;
+}
+
+.friendRow button {
+  padding: 7px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large);
+  color: var(--color-text-secondary);
+  background: transparent;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.friendRow button:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+@media (max-width: 720px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+
+  .leftSidebar {
+    position: static;
+    min-height: auto;
+    height: auto;
+    border-right: 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .nav a {
+    width: auto;
+    white-space: nowrap;
+  }
+}
