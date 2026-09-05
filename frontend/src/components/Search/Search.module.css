@@ -37,9 +37,14 @@
   padding: 12px 14px;
   border-radius: var(--radius-small);
   color: var(--color-text-secondary);
+  background: transparent;
   font-size: 0.95rem;
   font-weight: 700;
+  text-align: left;
   text-decoration: none;
+  transition:
+    color 160ms ease,
+    background 160ms ease;
 }
 
 .nav a:hover {
@@ -64,6 +69,9 @@
   font-weight: 700;
   text-align: left;
   cursor: pointer;
+  transition:
+    color 160ms ease,
+    background 160ms ease;
 }
 
 .signOutButton:hover {

@@ -31,14 +31,21 @@ export default function Feed() {
   const [newPost, setNewPost] = useState('');
   const [error, setError] = useState('');
 
-  // which post's comment panel is open (null = none)
-  const [openCommentsId, setOpenCommentsId] = useState(null);
+  // ids of posts whose comment panel is expanded
+  const [openCommentIds, setOpenCommentIds] = useState(new Set());
   // draft text per post id
   const [commentDrafts, setCommentDrafts] = useState({});
 
   useEffect(() => {
-    getPosts()
-      .then((data) => setPosts(data.posts))
+    getPosts(currentUser?._id)
+      .then((data) => {
+        setPosts(data.posts);
+        // comments show automatically under posts the current user created
+        const ownPostIds = data.posts
+          .filter((post) => post.author?._id === currentUser?._id)
+          .map((post) => post._id);
+        setOpenCommentIds(new Set(ownPostIds));
+      })
       .catch((fetchError) => setError(fetchError.message));
   }, []);
 
@@ -51,6 +58,7 @@ export default function Feed() {
     try {
       const { post } = await createPost({ authorId: currentUser._id, content });
       setPosts((currentPosts) => [post, ...currentPosts]);
+      setOpenCommentIds((current) => new Set(current).add(post._id));
       setNewPost('');
     } catch (submitError) {
       setError(submitError.message);
@@ -70,7 +78,15 @@ export default function Feed() {
   };
 
   const toggleComments = (postId) => {
-    setOpenCommentsId((current) => (current === postId ? null : postId));
+    setOpenCommentIds((current) => {
+      const next = new Set(current);
+      if (next.has(postId)) {
+        next.delete(postId);
+      } else {
+        next.add(postId);
+      }
+      return next;
+    });
   };
 
   const handleCommentDraftChange = (postId, value) => {
@@ -153,9 +169,9 @@ export default function Feed() {
                   <button type="button">↗</button>
                 </div>
 
-                {openCommentsId === post._id && (
+                {openCommentIds.has(post._id) && (
                   <div className={styles.comments}>
-                    {post.comments.map((comment) => (
+                    {post.comments.slice(-5).map((comment) => (
                       <div className={styles.comment} key={comment._id}>
                         <strong>{comment.author?.name}</strong>
                         <span>{comment.content}</span>

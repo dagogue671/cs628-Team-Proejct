@@ -1,12 +1,24 @@
 import { Router } from "express";
 import Post from "../models/Post.js";
+import User from "../models/User.js";
 
 const router = Router();
 const AUTHOR_FIELDS = "name email";
 
-router.get("/", async (_request, response, next) => {
+router.get("/", async (request, response, next) => {
   try {
-    const posts = await Post.find()
+    const { userId } = request.query;
+    let filter = {};
+
+    if (userId) {
+      const user = await User.findById(userId).select("friends");
+      if (!user) {
+        return response.status(404).json({ message: "User not found." });
+      }
+      filter = { author: { $in: [userId, ...user.friends] } };
+    }
+
+    const posts = await Post.find(filter)
       .sort({ createdAt: -1 })
       .populate("author", AUTHOR_FIELDS)
       .populate("comments.author", AUTHOR_FIELDS);

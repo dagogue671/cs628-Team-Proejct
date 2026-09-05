@@ -8,8 +8,9 @@ async function parseResponse(response) {
   return data;
 }
 
-export async function getPosts() {
-  const response = await fetch(`${API_URL}/api/posts`);
+export async function getPosts(userId) {
+  const query = userId ? `?userId=${userId}` : "";
+  const response = await fetch(`${API_URL}/api/posts${query}`);
   return parseResponse(response);
 }
 
